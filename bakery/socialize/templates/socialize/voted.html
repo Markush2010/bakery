@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
-<h4>Votes by {{ object }}</h4>
+<h4>
+  {% blocktrans with user=object %}
+    Votes by {{ user }}
+  {% endblocktrans %}
+</h4>
 <table class="table table-condensed cookies color1">
-    {% for cookie in cookies %}
-    <tr class="cookie">
-        <td class="name">{{ cookie.name }}</td>
-        <td class="description">{{ cookie.short_description }}</td>
-    </tr>
-    {% endfor %}
+  {% for cookie in cookies %}
+  <tr class="cookie">
+    <td class="name">{{ cookie.name }}</td>
+    <td class="description">{{ cookie.short_description }}</td>
+  </tr>
+  {% endfor %}
 </table>
 {% endblock content %}

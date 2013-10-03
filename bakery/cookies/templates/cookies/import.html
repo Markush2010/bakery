@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block head_title %}
-Import a new Cookie!
+  {% trans "Import a new Cookie!" %}
 {% endblock head_title%}
 
 {% block content %}
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Import" />
-</form>
+  <form action="" method="post" class="form-horizontal" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_url" class="col-lg-offset-2 col-lg-2 control-label">{% trans "URL" %}</label>
+      <div class="col-lg-6">
+        <input type="url" class="form-control" id="id_url" placeholder="{% trans "URL to the repository" %}">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-4 col-lg-6">
+        <button type="submit" class="btn btn-default">{% trans "Import" %}</button>
+      </div>
+    </div>
+  </form>
 {% endblock %}

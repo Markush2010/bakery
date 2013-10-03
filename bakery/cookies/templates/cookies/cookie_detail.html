@@ -2,7 +2,11 @@
 
 {% load i18n %}
 
-{% block head_title %}Cookie {{ object.full_name }}{% endblock %}
+{% block head_title %}
+  {% blocktrans with full_name=object.full_name %}
+    Cookie {{ full_name }}
+  {% endblocktrans %}
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -17,43 +21,51 @@
       {{ object.description|urlize }}
     </div>
     <div class="col-md-2 text-right">
-      <a href="{{ object.url }}">View on {{ object.backend }}</a>
+      <a href="{{ object.url }}">
+        {% blocktrans with backend=object.backend %}
+          View on {{ backend }}
+        {% endblocktrans %}
+      </a>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2">
       <strong>{% trans "Last commit" %}</strong>
-      <hr><small>{{ object.last_change|date:"DATETIME_FORMAT" }}</small>
+      <hr>
+      <small>{{ object.last_change|date:"DATETIME_FORMAT" }}</small>
       <br><br>
       {% if object.last_poll %}
         <strong>{% trans "Last poll" %}</strong>
-        <hr><small>{{ object.last_poll|date:"DATETIME_FORMAT" }}</small>
+        <hr>
+        <small>{{ object.last_poll|date:"DATETIME_FORMAT" }}</small>
         <br><br>
       {% endif %}
       {% if object.license %}
         <strong>{% trans "License" %}</strong>
-        <hr><small>{{ object.license }}</small>
+        <hr>
+        <small>{{ object.license }}</small>
         <br><br>
       {% endif %}
       {% if object.language %}
         <strong>{% trans "Language" %}</strong>
-        <hr><small>{{ object.language }}</small>
+        <hr>
+        <small>{{ object.language }}</small>
         <br><br>
       {% endif %}
       <strong>{% trans "Stats" %}</strong>
-      <hr />
+      <hr>
       <table>
         <tbody>
           <tr>
-            <td><small>Watchers</small></td>
+            <td><small>{% trans "Watchers" %}</small></td>
             <td><span class="badge">{{ object.repo_watchers }}</span></td>
           </tr>
           <tr>
-            <td><small>Forks</small></td>
+            <td><small>{% trans "Forks" %}</small></td>
             <td><span class="badge">{{ object.repo_forks }}</span></td>
           </tr>
           <tr>
-            <td><small>Votes</small></td>
+            <td><small>{% trans "Votes" %}</small></td>
             <td><span class="badge">{{ object.votes.count }}</span></td>
           </tr>
         </tbody>
@@ -61,12 +73,14 @@
       <br>
       {% if object.homepage %}
         <strong>{% trans "Homepage" %}</strong>
-        <hr><small>{{ object.homepage }}</small>
+        <hr>
+        <small>{{ object.homepage }}</small>
         <br><br>
       {% endif %}
       {% if object.language %}
         <strong>{% trans "Participants" %}</strong>
-        <hr><small>{{ object.participants }}</small>
+        <hr>
+        <small>{{ object.participants }}</small>
         <br><br>
       {% endif %}
     </div>
@@ -102,19 +116,19 @@
               <form action="{% url 'socialize:unvote' %}?next={{ request.get_full_path }}" method="POST" class="inline-form">
                 {% csrf_token %}
                 <input type="hidden" name="c" value="{{ cookie.id }}">
-                <input type="submit" value="Unvote" class="btn btn-primary">
+                <input type="submit" value="{% trans "Unvote" %}" class="btn btn-primary">
               </form>
             {% else %}
               <form action="{% url 'socialize:vote' %}?next={{ request.get_full_path }}" method="POST" class="inline-form">
                 {% csrf_token %}
                 <input type="hidden" name="c" value="{{ cookie.id }}">
-                <input type="submit" value="Vote" class="btn btn-default">
+                <input type="submit" value="{% trans "Vote" %}" class="btn btn-default">
               </form>
             {% endif %}
             <form action="{% url 'cookies:fork' object.owner_name object.name %}?next={{ request.get_full_path }}" method="POST" class="form-inline">
               {% csrf_token %}
               <input type="hidden" name="c" value="{{ cookie.id }}">
-              <input type="submit" value="Fork on GitHub" class="btn btn-primary">
+              <input type="submit" value="{% trans "Fork on GitHub" %}" class="btn btn-primary">
             </form>
           {% else %}
             {% trans "Please log in first" %}

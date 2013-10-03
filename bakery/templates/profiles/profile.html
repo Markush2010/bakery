@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
-{% load url from future %}
 {% load i18n %}
 
 {% block head_title %}
-{% blocktrans with username=bakery_user.username %}
-  Profile for {{ username}}
-{% endblocktrans %}
+  {% blocktrans with username=bakery_user.username %}
+    Profile for {{ username}}
+  {% endblocktrans %}
 {% endblock head_title%}
 
 {% block content %}
@@ -23,32 +22,29 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <strong>Joined</strong>
-      <hr><small>{{ bakery_user.date_joined|date }}</small>
+      <strong>{% trans "Joined" %}</strong>
+      <hr>
+      <small>{{ bakery_user.date_joined|date }}</small>
       <br><br>
-      <strong>Stats</strong>
-      <hr />
+      <strong>{% trans "Stats" %}</strong>
+      <hr>
       <table>
         <tbody>
           <tr>
-            <td><small>Cookies</small>
-            </td>
-            <td><span class="badge">{{ bakery_user.cookie_set.count }}</span>
-            </td>
+            <td><small>{% trans "Cookies" %}</small></td>
+            <td><span class="badge">{{ bakery_user.cookie_set.count }}</span></td>
           </tr>
         </tbody>
       </table>
       <br><br>
       <strong>{% trans "Candies" %}</strong>
-      <hr />
+      <hr>
       <table>
         <tbody>
           {% for candy in bakery_user.candies_list %}
             <tr>
-              <td><small>{{ candy.0.2|safe }} {{ candy.0.1 }}</small>
-              </td>
-              <td><span class="badge">{{ candy.1 }}</span>
-              </td>
+              <td><small>{{ candy.0.2|safe }} {{ candy.0.1 }}</small></td>
+              <td><span class="badge">{{ candy.1 }}</span></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -59,36 +55,36 @@
       <ul class="nav">
         {% if bakery_user.cookie_set.exists %}
           {% for cookie in bakery_user.cookie_set.all %}
-          <div class="row cookies">
-            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 name">
-              <a href="{% url 'cookies:detail' cookie.owner_name cookie.name %}">
-                <strong>{{ cookie.name }}</strong>
-              </a>
-            </div>
-            <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6 description">
+            <div class="row cookies">
+              <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 name">
+                <a href="{% url 'cookies:detail' cookie.owner_name cookie.name %}">
+                  <strong>{{ cookie.name }}</strong>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6 description">
                 {{ cookie.short_description }}
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 badges">
-              <span class="badge color3b">{{ cookie.language }}</span>
-              <div class="hidden-xs hidden-sm actions">
-                {% if request.user.is_authenticated %}
-                  {% if cookie.pk in voted_cookie_ids %}
-                    <form action="{% url 'socialize:unvote' %}?next={{ request.get_full_path }}" method="POST">
-                      {% csrf_token %}
-                      <input type="hidden" name="c" value="{{ cookie.id }}">
-                      <input type="submit" value="" title="Vote" class="btn btn-xs btn-primary btn-cookie">
-                    </form>
-                  {% else %}
-                    <form action="{% url 'socialize:vote' %}?next={{ request.get_full_path }}" method="POST">
-                      {% csrf_token %}
-                      <input type="hidden" name="c" value="{{ cookie.id }}">
-                      <input type="submit" value="" title="Vote" class="btn btn-xs btn-default btn-cookie">
-                    </form>
+              </div>
+              <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 badges">
+                <span class="badge color3b">{{ cookie.language }}</span>
+                <div class="hidden-xs hidden-sm actions">
+                  {% if request.user.is_authenticated %}
+                    {% if cookie.pk in voted_cookie_ids %}
+                      <form action="{% url 'socialize:unvote' %}?next={{ request.get_full_path }}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="c" value="{{ cookie.id }}">
+                        <input type="submit" value="" title="{% trans "Unote" %}" class="btn btn-xs btn-primary btn-cookie">
+                      </form>
+                    {% else %}
+                      <form action="{% url 'socialize:vote' %}?next={{ request.get_full_path }}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="c" value="{{ cookie.id }}">
+                        <input type="submit" value="" title="{% trans "Vote" %}" class="btn btn-xs btn-default btn-cookie">
+                      </form>
+                    {% endif %}
                   {% endif %}
-                {% endif %}
+                </div>
               </div>
             </div>
-          </div>
           {% endfor %}
         {% endif %}
       </ul>

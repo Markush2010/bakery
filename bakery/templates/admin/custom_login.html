@@ -1,30 +1,30 @@
 {% extends "admin/login.html" %}
-{% load url from future %}
+
+{% load i18n %}
 {% load static from staticfiles %}
 
 {% block extrastyle %}
-<link rel="stylesheet/less" type="text/css" href="{% static 'less/bakery.less' %}" />
-{% endblock %}
+  <link rel="stylesheet/less" type="text/css" href="{% static 'less/bakery.less' %}" />
+{% endblock extrastyle %}
 
 {% block content %}
-{% url "socialauth_begin" backend="google-oauth" as login_url %}
-{% if user.is_authenticated and user.is_active and not user.is_staff %}
+  {% url "socialauth_begin" backend="google-oauth" as login_url %}
+  {% if user.is_authenticated and user.is_active and not user.is_staff %}
     <p>
-        You are logged in as: <br />
-        {{ user.email }} <br />
-        (username "{{ user.username }}"), <br />
-        which is not a staff user. Please log in using another email, or ask an
-        administrator to set staff status for you.
+      {% blocktrans with email=user.email username=user.username %}
+        You are logged in as:<br />
+        {{ email }}<br />
+        (username "{{ username }}"),<br />
+        which is not a staff user. Please log in using another email, or ask an administrator to set staff status for you.
+      {% endblocktrans %}
     </p>
-{% endif %}
+  {% endif %}
 
-<p>
-    <a class="btn btn-default color2a" id="github-login" href="{% url 'social:begin' 'github' %}"
-        title="Sign in with Github">
-        Login with Github!
+  <p>
+    <a class="btn btn-default color2a" id="github-login" href="{% url 'social:begin' 'github' %}" title="{% trans "Sign in with Github!" %}">
+      {% trans "Sign in with Github!" %}
     </a>
-</p>
+  </p>
 
-<script src="{% static 'js/vendor/less.min.js' %}"></script>
-
-{% endblock %}
+  <script src="{% static 'js/vendor/less.min.js' %}"></script>
+{% endblock content %}

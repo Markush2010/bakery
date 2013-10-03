@@ -1,88 +1,84 @@
 <!DOCTYPE html>
 {% load i18n %}
 {% load static from staticfiles %}
-{% load url from future %}
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>Bakery &ndash; Cookiecutter Index</title>
+    <title>Bakery &ndash; cookiecutter Index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# TODO: only in debug build #}
+    {# TODO: only in DEBUG=True build #}
     {% if debug %}
-        <link rel="stylesheet/less" type="text/css" href="{% static 'less/vendor/bootstrap.less' %}" />
-        <link rel="stylesheet/less" type="text/css" href="{% static 'less/bakery.less' %}" />
+      <link rel="stylesheet/less" type="text/css" href="{% static 'less/vendor/bootstrap.less' %}" />
+      <link rel="stylesheet/less" type="text/css" href="{% static 'less/bakery.less' %}" />
     {% else %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/bootstrap.min.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bakery.min.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/bootstrap.min.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bakery.min.css' %}" />
     {% endif %}
-</head>
-<body data-spy="scroll" data-target="#bakery_navbar">
+  </head>
+  <body data-spy="scroll" data-target="#bakery_navbar">
     <div id="wrap">
-        <div class="container">
-            <div class="page-header">
-            <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" id="bakery_navbar">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/">
-                            <h2 class="long shoutout">Bakery &ndash; where cookies are made!</h2>
-                            <h2 class="short shoutout">Bakery!</h2>
-                            <img src="{% static 'img/logo.svg' %}" height="80" class="img">
-                        </a>
-                    </div>
+      <div class="container">
+        <div class="page-header">
+          <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" id="bakery_navbar">
+            <div class="container">
+              <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                  <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                  <h2 class="long shoutout">Bakery &ndash; where cookies are made!</h2>
+                  <h2 class="short shoutout">Bakery!</h2>
+                  <img src="{% static 'img/logo.svg' %}" height="80" class="img">
+                </a>
+              </div>
 
-                    <div class="collapse navbar-collapse" id="bakery_navbar_nav">
-                        <ul class="nav navbar-nav">
-                          {% block header_nav %}{% endblock header_nav %}
-                        </ul>
-                        <form class="navbar-form navbar-left" role="search" action="/" method="GET">
-                          <div class="form-group">
-                            <input name="q" type="text" class="form-control" placeholder="{% trans "Search" %}">
-                          </div>
-                          <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
-                        </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a class="btn btn-default color2b" id="github-login" href="{% url 'cookies:add' %}"
-                                    title="Add your Cookie!">
-                                    Add your Cookie!
-                                </a>
-                            </li>
-                            {% if request.user.is_authenticated %}
-                            <span class="lead">Hey {{ request.user.get_display_name }}! <a href="{% url "auth:logout" %}">Logout!</a></span>
-                            {% else %}
-                                <li>
-                                    <a class="btn btn-default color2a" id="github-login" href="{% url 'social:begin' 'github' %}"
-                                        title="Sign in with Github">
-                                        Login with Github!
-                                    </a>
-                                </li>
-                            {% endif %}
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
+              <div class="collapse navbar-collapse" id="bakery_navbar_nav">
+                <ul class="nav navbar-nav">
+                  {% block header_nav %}{% endblock header_nav %}
+                </ul>
+                <form class="navbar-form navbar-left" role="search" action="/" method="GET">
+                  <div class="form-group">
+                    <input name="q" type="text" class="form-control" placeholder="{% trans "Search" %}">
+                  </div>
+                  <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a class="btn btn-default color2b" id="github-login" href="{% url 'cookies:add' %}" title="{% trans "Add your Cookie!" %}">
+                      {% trans "Add your Cookie!" %}
+                    </a>
+                  </li>
+                  {% if request.user.is_authenticated %}
+                    <span class="lead">Hey {{ request.user.get_display_name }}! <a href="{% url "auth:logout" %}">{% trans "Logout" %}</a></span>
+                  {% else %}
+                    <li>
+                      <a class="btn btn-default color2a" id="github-login" href="{% url 'social:begin' 'github' %}" title="{% trans "Sign in with Github!" %}">
+                        {% trans "Sign in with Github!" %}
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
             </div>
-            {% block content %}{% endblock content %}
-            <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-                <div class="container">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Copyright &copy; 2013 by Christopher Grebs, Markus Holtermann</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="https://github.com/muffins-on-dope/bakery">Fork on GitHub</a></li>
-                        <li><a href="http://djangodash.com/">Created during the djangodash 2013</a></li>
-                    </ul>
-                </div>
-            </nav>
+          </nav>
         </div>
+        {% block content %}{% endblock content %}
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+          <div class="container">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Copyright &copy; 2013 by Christopher Grebs, Markus Holtermann</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/muffins-on-dope/bakery">Fork on GitHub</a></li>
+              <li><a href="http://djangodash.com/">Created during the djangodash 2013</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -91,5 +87,5 @@
     <script src="{% static 'js/vendor/bootstrap.min.js' %}" type="application/javascript"></script>
 
     <script src="{% static 'js/vendor/less.min.js' %}"></script>
-</body>
+  </body>
 </html>
