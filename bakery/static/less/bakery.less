@@ -17,25 +17,12 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    padding: 0 0 60px 0;
-}
-
-#bakery_navbar_nav {
-    margin-top: 15px;
-
-    .navbar-right li {
-      margin: 5px;
-    }
+    padding: 9px 0 60px 0;
 }
 
 #wrap .container {
   max-width: 1170px;
 }
-
-.page-header {
-    border: none;
-}
-
 
 .cookies {
     .badges {
@@ -63,22 +50,17 @@ html, body {
     }
 }
 
-h2.shoutout {
-    float: right;
-    @media (max-width: @screen-desktop) {
-        &.long {
-            display: none;
+.navbar-brand {
+    .shoutout {
+        @media (max-width: @screen-desktop) {
+            &.long {
+                display: none;
+            }
         }
-        &.short {
-            display: inline-block;
-        }
-    }
-    @media (min-width: @screen-desktop) {
-        &.long {
-            display: inline-block;
-        }
-        &.short {
-            display: none;
+        @media (min-width: @screen-desktop) {
+            &.short {
+                display: none;
+            }
         }
     }
 }

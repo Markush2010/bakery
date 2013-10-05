@@ -9,8 +9,8 @@
 
     {# TODO: only in DEBUG=True build #}
     {% if debug %}
-      <link rel="stylesheet/less" type="text/css" href="{% static 'less/vendor/bootstrap.less' %}" />
-      <link rel="stylesheet/less" type="text/css" href="{% static 'less/bakery.less' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/bootstrap.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bakery.css' %}" />
     {% else %}
       <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/bootstrap.min.css' %}" />
       <link rel="stylesheet" type="text/css" href="{% static 'css/bakery.min.css' %}" />
@@ -19,53 +19,49 @@
   <body data-spy="scroll" data-target="#bakery_navbar">
     <div id="wrap">
       <div class="container">
-        <div class="page-header">
-          <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" id="bakery_navbar">
-            <div class="container">
-              <div class="navbar-header">
-                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                  <span class="sr-only">{% trans "Toggle navigation" %}</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                  <h2 class="long shoutout">Bakery &ndash; where cookies are made!</h2>
-                  <h2 class="short shoutout">Bakery!</h2>
-                  <img src="{% static 'img/logo.svg' %}" height="80" class="img">
-                </a>
-              </div>
-
-              <div class="collapse navbar-collapse" id="bakery_navbar_nav">
-                <ul class="nav navbar-nav">
-                  {% block header_nav %}{% endblock header_nav %}
-                </ul>
-                <form class="navbar-form navbar-left" role="search" action="/" method="GET">
-                  <div class="form-group">
-                    <input name="q" type="text" class="form-control" placeholder="{% trans "Search" %}">
-                  </div>
-                  <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                  <li>
-                    <a class="btn btn-default color2b" id="github-login" href="{% url 'cookies:add' %}" title="{% trans "Add your Cookie!" %}">
-                      {% trans "Add your Cookie!" %}
-                    </a>
-                  </li>
-                  {% if request.user.is_authenticated %}
-                    <span class="lead">Hey {{ request.user.get_display_name }}! <a href="{% url "auth:logout" %}">{% trans "Logout" %}</a></span>
-                  {% else %}
-                    <li>
-                      <a class="btn btn-default color2a" id="github-login" href="{% url 'social:begin' 'github' %}" title="{% trans "Sign in with Github!" %}">
-                        {% trans "Sign in with Github!" %}
-                      </a>
-                    </li>
-                  {% endif %}
-                </ul>
-              </div>
+        <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">
+                <img src="{% static 'img/logo.svg' %}" style="height: 30px">
+                <span class="shoutout long">Bakery &ndash; where cookies are made!</span>
+                <span class="shoutout short">Bakery!</span>
+              </a>
             </div>
-          </nav>
-        </div>
+
+            <div class="collapse navbar-collapse">
+              <form class="navbar-form navbar-right" role="search" action="/" method="GET">
+                <div class="form-group">
+                  <input name="q" type="text" class="form-control" placeholder="{% trans "Search" %}">
+                </div>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="{% url 'cookies:add' %}" title="{% trans "Add your Cookie!" %}">{% trans "Add your Cookie!" %}</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hey {{ request.user.get_display_name }}!<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'auth:profile' request.user.username %}">{% trans "Profile" %}</a></li>
+                      <li><a href="{% url "auth:logout" %}">{% trans "Logout" %}</a></li>
+                    </ul>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="{% url 'social:begin' 'github' %}" title="{% trans "Sign in with Github!" %}">{% trans "Sign in with Github!" %}</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
         {% block content %}{% endblock content %}
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
           <div class="container">
@@ -85,7 +81,5 @@
     <script src="{% static 'js/vendor/jquery.min.js' %}" type="application/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/vendor/bootstrap.min.js' %}" type="application/javascript"></script>
-
-    <script src="{% static 'js/vendor/less.min.js' %}"></script>
   </body>
 </html>
