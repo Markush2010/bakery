@@ -1714,7 +1714,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #29757f;
+  color: #555555;
   vertical-align: middle;
   background-color: #333333;
   border: 1px solid #333333;
@@ -3229,9 +3229,9 @@ input[type="button"].btn-block {
   margin: 2px 0 0;
   font-size: 14px;
   list-style: none;
-  background-color: #333333;
+  background-color: #bd977a;
   border: 1px solid #333333;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid #8d5b35;
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -3865,7 +3865,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #29757f;
+  color: #555555;
   cursor: default;
   background-color: #ffefe3;
   border: 1px solid #333333;
@@ -4069,8 +4069,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-collapse {
   max-height: 340px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0;
+  padding-left: 0;
   overflow-x: visible;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -4117,10 +4117,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
     overflow-y: visible;
   }
   .navbar-collapse .navbar-nav.navbar-left:first-child {
-    margin-left: -15px;
+    margin-left: 0;
   }
   .navbar-collapse .navbar-nav.navbar-right:last-child {
-    margin-right: -15px;
+    margin-right: 0;
   }
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
@@ -4129,8 +4129,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .container > .navbar-header,
 .container > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 @media (min-width: 768px) {
@@ -4178,7 +4178,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 10px 0;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4190,7 +4190,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand {
-    margin-left: -15px;
+    margin-left: 0;
   }
 }
 
@@ -4199,7 +4199,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   float: right;
   padding: 9px 10px;
   margin-top: 8px;
-  margin-right: 15px;
+  margin-right: 0;
   margin-bottom: 8px;
   background-color: transparent;
   border: 1px solid transparent;
@@ -4224,7 +4224,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-nav {
-  margin: 7.5px -15px;
+  margin: 5px 0;
 }
 
 .navbar-nav > li > a {
@@ -4280,11 +4280,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-form {
-  padding: 10px 15px;
+  padding: 10px 0;
   margin-top: 8px;
-  margin-right: -15px;
+  margin-right: 0;
   margin-bottom: 8px;
-  margin-left: -15px;
+  margin-left: 0;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -4363,8 +4363,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar-text {
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
@@ -4486,8 +4486,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #be987c;
-  border-color: #ad7d5a;
+  background-color: #bd977a;
+  border-color: #bd977a;
 }
 
 .navbar-inverse .navbar-brand {
@@ -4497,7 +4497,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #333333;
-  background-color: transparent;
+  background-color: #ff9a4c;
 }
 
 .navbar-inverse .navbar-text {
@@ -4511,14 +4511,14 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #333333;
-  background-color: transparent;
+  background-color: #ff9a4c;
 }
 
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #333333;
-  background-color: #ad7d5a;
+  background-color: #ad7c58;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a,
@@ -4543,14 +4543,14 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #b28564;
+  border-color: #b28462;
 }
 
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   color: #333333;
-  background-color: #ad7d5a;
+  background-color: #ad7c58;
 }
 
 .navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
@@ -4572,7 +4572,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #ad7d5a;
+    border-color: #bd977a;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
     color: #333333;
@@ -4580,13 +4580,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #333333;
-    background-color: transparent;
+    background-color: #ff9a4c;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #333333;
-    background-color: #ad7d5a;
+    background-color: #ad7c58;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
